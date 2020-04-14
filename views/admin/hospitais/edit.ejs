@@ -1,0 +1,27 @@
+<%- include ../../partials/header.ejs %>
+<%- include ../../partials/navbar.ejs %>
+
+<div class="container">
+    <hr>
+    <div class="card"> 
+        <div class="card-header">
+            <h2>Edição de hospital</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/hospitais/update">
+                <input class="form-control" type="text" name="nome" placeholder="Defina o nome do hospital" value="<%= hospital.nome %>"><br>
+                <input class="form-control" type="number" name="cnpj" placeholder="Defina o cnpj do hospital" value="<%= hospital.cnpj %>"><br>
+                <input class="form-control" type="text" name="endereco" placeholder="Defina o endereco do hospital" value="<%= hospital.endereco %>"><br>
+                <input class="form-control" type="number" name="numero" placeholder="Defina o número do hospital" value="<%= hospital.numero %>"><br>
+                <input class="form-control" type="text" name="complemento" placeholder="Defina o complemento do endereço do hospital" value="<%= hospital.complemento %>"><br>
+                <input class="form-control" type="text" name="bairro" placeholder="Defina o nome do bairro do hospital" value="<%= hospital.bairro %>"><br>
+                <input class="form-control" type="text" name="cidade" placeholder="Defina a cidade do hospitla" value="<%= hospital.cidade %>"><br>
+                <input class="form-control" type="text" name="uf" placeholder="Defina o estado (UF) do hospital" value="<%= hospital.uf %>"><br>
+                <input type="hidden" name="id" value="<%= hospital.id %>">
+                <button class="btn btn-success">Atualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ../../partials/footer.ejs %>

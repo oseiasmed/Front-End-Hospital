@@ -1,0 +1,32 @@
+<%- include ../../partials/header.ejs %>
+<%- include ../../partials/navbar.ejs %>
+
+<div class="container">
+    <hr>
+    <div class="card"> 
+        <div class="card-header">
+            <h2>Cadastro de Hospital</h2>
+        </div>
+        <div class="card-body">
+             
+            <form method="POST" action="/admin/hospitais/save">
+              
+
+                <input class="form-control" type="text" name="nome" placeholder="Defina o nome do hospital"><br>
+                <input class="form-control" type="number" name="cnpj" placeholder="Defina o cnpj do hospital"><br>
+                <input class="form-control" type="text" name="endereco" placeholder="Defina o endereco do hospital"><br>
+                <input class="form-control" type="number" name="numero" placeholder="Defina o número do hospital"><br>
+                <input class="form-control" type="text" name="complemento" placeholder="Defina o complemento do endereço do hospital"><br>
+                <input class="form-control" type="text" name="bairro" placeholder="Defina o nome do bairro do hospital"><br>
+                <input class="form-control" type="text" name="cidade" placeholder="Defina a cidade do hospitla"><br>
+                <input class="form-control" type="text" name="uf" placeholder="Defina o estado (UF) do hospital"><br>
+                <input type="hidden" name="id" value="<%= hospital.id %>">
+                <button class="btn btn-success">Cadastrar</button>
+
+            
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ../../partials/footer.ejs %>
