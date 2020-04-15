@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const connection = require("../database/database");
 
-const Hospital = connection.define('hospital', {
+const Hospital = connection.define('hospitals', {
 
     nome: {
         type: Sequelize.STRING,

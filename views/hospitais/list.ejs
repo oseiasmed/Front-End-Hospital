@@ -1,11 +1,11 @@
-<%- include('../../partials/header'); -%>
-<%- include('../../partials/navbar'); -%>
-<div class="container">
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+<div class="container-lg">
     <hr>
-    <h2>Hospitais</h2>
-    <a class="btn btn-success" href="/admin/hospitais/new">Criar um novo hospital</a>
+    <h2 class="text-center"> Hospitais cadastrados</h2>
+    <a class="btn btn-success ml-3" href="/hospitais/cadastrar">Cadastrar um novo hospital</a>
     <hr>
-    <table class="table table-bordered">
+    <table class="table table-striped ">
         <thead>
             <tr>
                 <th>ID:</th>
@@ -18,11 +18,14 @@
                 <th>Bairro:</th>
                  <th>Cidade:</th>
                  <th>UF:</th>
+                 <th>Ações</th>
+                 
             </tr>
         </thead>
         <tbody>
             <% hospitais.forEach(hospital => { %>
                 <tr>
+                
                     <th><%= hospital.id %></th>
                     <th><%= hospital.nome %></th>
                     <th><%= hospital.cep %></th>
@@ -33,9 +36,30 @@
                     <th><%= hospital.bairro %></th>
                     <th><%= hospital.cidade %></th>
                     <th><%= hospital.uf %></th>
-                </tr>
+                    <th>
+         
+                        <a href="/hospitais/cadastar/<%= hospital.id %>" class="btn btn-warning">Editar</a>
+                        
+                        <form method="POST" action="/hospitais/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                            <input type="hidden" name="id" value="<%= hospital.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                    
+                    </th>
+                    </tr>
             <% }) %>
         </tbody>
-    </table>
-</div>
+        </table>
+    </div>
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar esta categoria?");
+        if(decision){
+            form.submit();
+        }
+    }
+</script>
+<%- include('../partials/footer.ejs') %>
 
