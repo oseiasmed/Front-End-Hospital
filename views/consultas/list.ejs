@@ -2,16 +2,15 @@
 <%- include('../partials/navbar.ejs') %>
 <div class="container-lg">
     <hr>
-    <h2 class="text-center"> Hospitais cadastrados</h2>
-    <a class="btn btn-success ml-3" href="/hospitais/cadastrar">Cadastrar um novo hospital</a>
+    <h2 class="text-center">Pacientes cadastrados</h2>
+    <a class="btn btn-success ml-3" href="/pacientes/cadastrar">Cadastrar um novo paciente</a>
     <hr>
     <table class="table table-striped ">
         <thead>
             <tr>
                 <th>ID:</th>
                 <th>Nome:</th>
-                 <th>CEP:</th>
-                <th>CNPJ:</th>
+                <th>CPF:</th>
                 <th>Endereço:</th>
                 <th>Número:</th>
                 <th>Complemento:</th>
@@ -23,25 +22,23 @@
             </tr>
         </thead>
         <tbody>
-            <% hospitais.forEach(hospital => { %>
+            <% pacientes.forEach(paciente => { %>
                 <tr>
                 
-                    <th><%= hospital.id %></th>
-                    <th><%= hospital.nome %></th>
-                    <th><%= hospital.cep %></th>
-                    <th><%= hospital.cnpj %></th>
-                    <th><%= hospital.endereco %></th>
-                    <th><%= hospital.numero %></th>
-                    <th><%= hospital.complemento %></th>
-                    <th><%= hospital.bairro %></th>
-                    <th><%= hospital.cidade %></th>
-                    <th><%= hospital.uf %></th>
+                    <th><%= paciente.id %></th>
+                    <th><%= paciente.nome %></th>
+                    <th><%= paciente.cpf %></th>
+                    <th><%= paciente.endereco %></th>
+                    <th><%= paciente.numero %></th>
+                    <th><%= paciente.complemento %></th>
+                    <th><%= paciente.bairro %></th>
+                    <th><%= paciente.cidade %></th>
+                    <th><%= paciente.uf %></th>
                     <th>
-         
-                        <a href="/hospitais/editar/<%= hospital.id %>" class="btn btn-warning">Editar</a>
+                    <a href="/pacientes/editar/<%= paciente.id %>" class="btn btn-warning">Editar</a>
                         
-                        <form method="POST" action="/hospitais/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
-                            <input type="hidden" name="id" value="<%= hospital.id %>">
+                        <form method="POST" action="/pacientes/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                            <input type="hidden" name="id" value="<%= paciente.id %>">
                             <button class="btn btn-danger">Deletar</button>
                         </form>
                     

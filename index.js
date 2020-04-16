@@ -1,30 +1,20 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-//const session = require("express-session");
 const connection = require("./database/database");
-
-// Utilização dos Controllers
-
 const hospitaisController = require("./hospitais/hospitaisController");
-const usersController = require("./users/UsersController");
-
-// Utilização das Models
-
+const consultasController = require("./consultas/consultasController");
+const pacientesController = require("./pacientes/pacientesController");
 const Hospital = require("./hospitais/Hospital");
+const Paciente = require("./pacientes/Paciente");
+const Consulta = require("./consultas/Consulta");
 const User = require("./users/User");
 
 // View engine
 
 app.set('view engine', 'ejs');
 
-// Sessions
-
-/*app.use(session({
-    secret: "hospital_session", cookie: { maxAge: 30000000000000000000000 }
-}))*/
-
-// Static
+// Using Static Files 
 
 app.use(express.static('public'));
 
@@ -33,7 +23,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Database
+// Database Authentication
 
 connection
     .authenticate()
@@ -44,8 +34,8 @@ connection
     })
 
 app.use("/", hospitaisController);
-//app.use("/", usersController);
-
+app.use("/", pacientesController);
+app.use("/", consultasController);
 
 app.listen(3000, () => {
     console.log("O servidor está rodando!")

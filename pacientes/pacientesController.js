@@ -1,124 +1,148 @@
 const express = require("express");
 const router = express.Router();
-const Hospital = require("../hospitais/Hospital");
 const Paciente = require("./Paciente");
-const slugify = require("slugify");
-const adminAuth = require("../middlewares/adminAuth");
 
-router.get("/admin/articles", adminAuth, (req, res) => {
-    Paciente.findAll({
-        include: [{ model: Hospital }]
-    }).then(hospitais => {
-        res.render("admin/articles/index", { hospitais: hospitais })
-    });
-});
 
-router.get("/admin/articles/new", adminAuth, (req, res) => {
-    Hispital.findAll().then(hospitais => {
-        res.render("admin/articles/new", { hospitais: hospitais })
-    })
+//const adminAuth = require("../middlewares/adminAuth");
+
+router.get("/pacientes/cadastar", (req, res) => {
+
+    res.render("pacientes/new")
 })
 
-router.post("/articles/save", adminAuth, (req, res) => {
-    var title = req.body.title;
-    var body = req.body.body;
-    var category = req.body.category;
 
-    Paciente.create({
-        title: title,
-        slug: slugify(title),
-        body: body,
-        categoryId: category
-    }).then(() => {
-        res.redirect("/admin/articles");
-    });
+// ======================== Listar Pacientes =========================== //
+
+router.get("/pacientes/listar", (req, res) => {
+
+    Paciente.findAll().then(pacientes => {
+
+        res.render("pacientes/list", { pacientes: pacientes });
+    })
+});
+
+router.get("/pacientes/cadastrar", (req, res) => {
+
+    res.render("pacientes/new")
+
+})
+
+
+// ==========================  Salvar / Cadastrar Pacientes ======================= // 
+
+router.post("/pacientes/save", (req, res) => {
+    var nome = req.body.nome;
+    var cpf = req.body.cpf;
+    var endereco = req.body.endereco;
+    var numero = req.body.numero;
+    var dtnascimento = req.body.dtnascimento;
+    var complemento = req.body.complemento;
+    var bairro = req.body.bairro;
+    var cidade = req.body.cidade;
+    var uf = req.body.uf;
+
+    if (nome != undefined) {
+
+        Paciente.create({
+            nome: nome,
+            cpf: cpf,
+            endereco: endereco,
+            numero: numero,
+            dtnascimento: dtnascimento,
+            complemento: complemento,
+            bairro: bairro,
+            cidade: cidade,
+            uf: uf
+
+        }).then(() => {
+            res.redirect("/pacientes/listar");
+        })
+
+    } else {
+        res.redirect("/pacientes/save");
+    }
 });
 
 
-router.post("/articles/delete", adminAuth, (req, res) => {
+
+
+router.post("/pacientes/delete", (req, res) => {
     var id = req.body.id;
     if (id != undefined) {
         if (!isNaN(id)) {
-            Article.destroy({
+            Paciente.destroy({
                 where: {
                     id: id
                 }
             }).then(() => {
-                res.redirect("/admin/articles");
+                res.redirect("/pacientes/listar");
             });
         } else {// NÃO FOR UM NÚMERO
-            res.redirect("/admin/articles");
+            res.redirect("/pacientes/listar");
         }
     } else { // NULL
-        res.redirect("/admin/articles");
+        res.redirect("/pacientes/index");
     }
 });
 
-router.get("/admin/articles/edit/:id", adminAuth, (req, res) => {
+
+// ============= Editar Pacientes =============== //
+
+router.get("/pacientes/editar/:id", (req, res) => {
     var id = req.params.id;
-    Article.findByPk(id).then(article => {
-        if (article != undefined) {
-            Category.findAll().then(categories => {
-                res.render("admin/articles/edit", { categories: categories, article: article })
 
-            });
+    if (isNaN(id)) {
+        res.redirect("/pacientes/listar");
+    }
+
+    Paciente.findByPk(id).then(pacientes => {
+
+        if (pacientes != undefined) {
+
+            res.render("pacientes/edit", { pacientes: pacientes });
+
         } else {
-            res.redirect("/");
+            res.redirect("/pacientes/listar");
         }
-    }).catch(err => {
-        res.redirect("/");
-    });
-});
 
-router.post("/articles/update", adminAuth, (req, res) => {
-    var id = req.body.id;
-    var title = req.body.title;
-    var body = req.body.body;
-    var category = req.body.category
+    }).catch(erro => {
 
-    Article.update({ title: title, body: body, categoryId: category, slug: slugify(title) }, {
+        res.redirect("/pacientes/listar");
+    })
+})
+
+// ======= Persistir edição de Pacientes ========= //
+
+router.post("/pacientes/atualizar", (req, res) => {
+    id = req.body.id;
+    var nome = req.body.nome;
+    var cpf = req.body.cpf;
+    var endereco = req.body.endereco;
+    var numero = req.body.numero;
+    var dtnascimento = req.body.dtnascimento;
+    var complemento = req.body.complemento;
+    var bairro = req.body.bairro;
+    var cidade = req.body.cidade;
+    var uf = req.body.uf;
+
+    Paciente.update({
+
+        nome: nome,
+        cpf: cpf,
+        endereco: endereco,
+        numero: numero,
+        dtnascimento: dtnascimento,
+        complemento: complemento,
+        bairro: bairro,
+        cidade: cidade,
+        uf: uf
+    }, {
         where: {
             id: id
         }
     }).then(() => {
-        res.redirect("/admin/articles");
-    }).catch(err => {
-        res.redirect("/");
-    });
-});
-
-router.get("/articles/page/:num", (req, res) => {
-    var page = req.params.num;
-    var offset = 0;
-
-    if (isNaN(page) || page == 1) {
-        offset = 0;
-    } else {
-        offset = (parseInt(page) - 1) * 4;
-    }
-
-    Article.findAndCountAll({
-        limit: 4,
-        offset: offset,
-    }).then(articles => {
-        var next;
-        if (offset + 4 >= articles.count) {
-            next = false;
-        } else {
-            next = true;
-        }
-
-        var result = {
-            page: parseInt(page),
-            next: next,
-            articles: articles
-        }
-
-        Category.findAll().then(categories => {
-            res.render("admin/articles/page", { result: result, categories: categories })
-        });
+        res.redirect("/pacientes/listar/");
     })
-
 
 });
 

@@ -9,7 +9,7 @@ const Hospital = connection.define('hospitals', {
     },
 
     cep: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER, 
         allowNull: false
     },
 

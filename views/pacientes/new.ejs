@@ -1,20 +1,21 @@
 <%- include('../partials/header.ejs') %>
 <%- include('../partials/navbar.ejs') %>
+
 <div class="container">
     <hr>
     <div class="card"> 
         <div class="card-header">
-            <h2 class="text-center">Cadastar Hospital</h2>
+            <h2 class="text-center">Editar cadastro de Paciente</h2>
         </div>
         <div class="card-body">
-        <form action="/hospitais/save" method="post"> 
-             
+    <form action="/pacientes/save" method="post">         
     <div class="row">
     <div class="col">
+  
       <input type="text" class="form-control" name="nome" placeholder="Nome">
     </div>
     <div class="col">
-      <input type="number" class="form-control" name="cnpj" placeholder="CNPJ">
+      <input type="number" class="form-control" name="cpf" placeholder="CPF">
     </div>
   </div><br>
   <div class="row">
@@ -31,7 +32,7 @@
        
     </div>
     <div class="col">
-      <input class="form-control" type="number" name="cep" placeholder="CEP">
+      <input class="form-control" type="date" name="dtnascimento" placeholder="Data de nascomento">
     </div>
   </div><br>
   <div class="row">
@@ -44,9 +45,9 @@
     </div>
   </div><br>
   <input class="form-control" type="text" name="uf" placeholder="Estado (UF)"><br>
-  <button class="btn btn-success btn-block">Cadastrar</button>
- </form>
-  </div>
+  <button class="btn btn-success btn-block">Atualizar</button><br>
+  </form>
+       </div>
     </div>
 </div>
 <%- include('../partials/footer.ejs') %>

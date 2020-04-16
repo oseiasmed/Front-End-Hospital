@@ -1,0 +1,53 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+<div class="container">
+    <hr>
+    <div class="card"> 
+        <div class="card-header">
+            <h2 class="text-center">Cadastrar Paciente</h2>
+        </div>
+        <div class="card-body">
+    <form action="/pacientes/atualizar" method="post">         
+    <div class="row">
+    <div class="col">
+    <input type="hidden" name="id" value="<%= pacientes.id %>">
+      <input type="text" class="form-control" name="nome" placeholder="Nome" value="<%= pacientes.nome %>">
+    </div>
+    <div class="col">
+      <input type="number" class="form-control" name="cpf" placeholder="CNPJ" value="<%= pacientes.cpf %>">
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col">
+      <input type="text" class="form-control" name="endereco" placeholder="Endereco" value="<%= pacientes.endereco %>">
+    </div>
+    <div class="col">
+      <input type="number" class="form-control" name="numero" placeholder="Número" value="<%= pacientes.numero %>">
+    </div>
+  </div><br>
+   <div class="row">
+    <div class="col">
+       <input class="form-control" type="text" name="complemento" placeholder="Complemento" value="<%= pacientes.complemento %>">
+       
+    </div>
+    <div class="col">
+      <input class="form-control" type="date" name="dtnascimento" placeholder="Data de nascomento" value="<%= pacientes.dtnascimento %>">
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col">
+     <input class="form-control" type="text" name="bairro" placeholder="Bairro" value="<%= pacientes.bairro %>">
+       
+    </div>
+    <div class="col">
+      <input class="form-control" type="text" name="cidade" placeholder="Cidade" value="<%= pacientes.cidade %>">
+    </div>
+  </div><br>
+  <input class="form-control" type="text" name="uf" placeholder="Estado (UF)" value="<%= pacientes.uf %>"><br>
+  <button class="btn btn-success btn-block">Atualizar</button>
+  </form>
+       </div>
+    </div>
+</div>
+<%- include('../partials/footer.ejs') %>
+

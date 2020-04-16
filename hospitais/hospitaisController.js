@@ -9,6 +9,9 @@ router.get("/", (req, res) => {
     res.render("hospitais/index")
 })
 
+
+// Listar Hospitais
+
 router.get("/hospitais/listar", (req, res) => {
 
     Hospital.findAll().then(hospitais => {
@@ -23,7 +26,8 @@ router.get("/hospitais/cadastrar", (req, res) => {
 
 })
 
-// Salvar hospitais
+
+// Salvar / Cadastrar Hospitais
 
 router.post("/hospitais/save", (req, res) => {
     var nome = req.body.nome;
@@ -54,10 +58,9 @@ router.post("/hospitais/save", (req, res) => {
         })
 
     } else {
-        res.redirect("/hospitais/new");
+        res.redirect("/hospitais/save");
     }
 });
-
 
 // Deletar hospitais
 
@@ -80,29 +83,35 @@ router.post("/hospitais/delete", (req, res) => {
     }
 });
 
+//Editar Hospital
 
 router.get("/hospitais/editar/:id", (req, res) => {
     var id = req.params.id;
 
     if (isNaN(id)) {
-        res.redirect("/hospitais");
+        res.redirect("/hospitais/listar");
     }
 
-    Hospital.findByPk(id).then(hospital => {
-        if (hospital != undefined) {
-            res.render("admin/categories/edit", { hospital: hospital });
+    Hospital.findByPk(id).then(hospitals => {
+
+        if (hospitals != undefined) {
+
+            res.render("hospitais/edit", { hospitals: hospitals });
+
         } else {
             res.redirect("/hospitais/listar");
         }
+
     }).catch(erro => {
+
         res.redirect("/hospitais/listar");
     })
 })
 
-//Editar Hospitais
 
-router.post("/hospitais/cadastrar/", (req, res) => {
 
+router.post("/hospitais/atualizar", (req, res) => {
+    id = req.body.id;
     var nome = req.body.nome;
     var cnpj = req.body.cnpj;
     var endereco = req.body.endereco;
@@ -131,7 +140,7 @@ router.post("/hospitais/cadastrar/", (req, res) => {
             id: id
         }
     }).then(() => {
-        res.redirect("/hospitais/cadastrar/");
+        res.redirect("/hospitais/listar/");
     })
 
 });

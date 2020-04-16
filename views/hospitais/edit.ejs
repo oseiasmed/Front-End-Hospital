@@ -4,22 +4,50 @@
     <hr>
     <div class="card"> 
         <div class="card-header">
-            <h2>Teste</h2>
+            <h2 class="text-center">Editar cadastro de Hospital</h2>
         </div>
         <div class="card-body">
-            <form method="POST" action="/hospitais/update">
-                <input class="form-control" type="text" name="nome" placeholder="Defina o nome do hospital" value="<%= hospital.nome %>"><br>
-                <input class="form-control" type="number" name="cnpj" placeholder="Defina o cnpj do hospital" value="<%= hospital.cnpj %>"><br>
-                <input class="form-control" type="text" name="endereco" placeholder="Defina o endereco do hospital" value="<%= hospital.endereco %>"><br>
-                <input class="form-control" type="number" name="numero" placeholder="Defina o número do hospital" value="<%= hospital.numero %>"><br>
-                <input class="form-control" type="text" name="complemento" placeholder="Defina o complemento do endereço do hospital" value="<%= hospital.complemento %>"><br>
-                <input class="form-control" type="text" name="bairro" placeholder="Defina o nome do bairro do hospital" value="<%= hospital.bairro %>"><br>
-                <input class="form-control" type="text" name="cidade" placeholder="Defina a cidade do hospitla" value="<%= hospital.cidade %>"><br>
-                <input class="form-control" type="text" name="uf" placeholder="Defina o estado (UF) do hospital" value="<%= hospital.uf %>"><br>
-                <input type="hidden" name="id" value="<%= hospital.id %>">
-                <button class="btn btn-success">Atualizar</button>
-            </form>
-        </div>
+    <form action="/hospitais/atualizar" method="post">         
+    <div class="row">
+    <div class="col">
+    <input type="hidden" name="id" value="<%= hospitals.id %>">
+      <input type="text" class="form-control" name="nome" placeholder="Nome" value="<%= hospitals.nome %>">
+    </div>
+    <div class="col">
+      <input type="number" class="form-control" name="cnpj" placeholder="CNPJ" value="<%= hospitals.cnpj %>">
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col">
+      <input type="text" class="form-control" name="endereco" placeholder="Endereco" value="<%= hospitals.endereco %>">
+    </div>
+    <div class="col">
+      <input type="number" class="form-control" name="numero" placeholder="Número" value="<%= hospitals.numero %>">
+    </div>
+  </div><br>
+   <div class="row">
+    <div class="col">
+       <input class="form-control" type="text" name="complemento" placeholder="Complemento" value="<%= hospitals.complemento %>">
+       
+    </div>
+    <div class="col">
+      <input class="form-control" type="number" name="cep" placeholder="CEP" value="<%= hospitals.cep %>">
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col">
+     <input class="form-control" type="text" name="bairro" placeholder="Bairro" value="<%= hospitals.bairro %>">
+       
+    </div>
+    <div class="col">
+      <input class="form-control" type="text" name="cidade" placeholder="Cidade" value="<%= hospitals.cidade %>">
+    </div>
+  </div><br>
+  <input class="form-control" type="text" name="uf" placeholder="Estado (UF)" value="<%= hospitals.uf %>"><br>
+  <button class="btn btn-success btn-block">Atualizar</button>
+  </form>
+       </div>
     </div>
 </div>
 <%- include('../partials/footer.ejs') %>
+

@@ -1,17 +1,18 @@
 const Sequelize = require("sequelize");
 const connection = require("../database/database");
-const Category = require("../hospitais/Hospital");
 
-const Paciente = connection.define('paciente', {
+
+const Paciente = connection.define('pacientes', {
 
     nome: {
         type: Sequelize.STRING,
         allowNull: false
+
     }, cpf: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    dtanascimento: {
+    dtnascimento: {
         type: Sequelize.DATE,
         allowNull: false
     },
@@ -40,13 +41,12 @@ const Paciente = connection.define('paciente', {
         allowNull: false
     },
 
-    rua: {
+    endereco: {
         type: Sequelize.STRING,
         allowNull: false
     },
 })
 
-Hosital.hasMany(Paciente); // Um hospital tem muitos pacientes
-Paciente.belongsTo(Hospital); // UM paciente está internado em um hosital
+
 
 module.exports = Paciente;
