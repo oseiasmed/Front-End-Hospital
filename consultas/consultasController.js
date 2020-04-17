@@ -55,25 +55,23 @@ router.get("/pacientes/cadastrar", (req, res) => {
 
 router.post("/consultas/save", (req, res) => {
     
-    var consultas = req.body.consultas;
+    var dtconsulta = req.body.dtconsulta;
     
-   
-
+    
     if (consultas != undefined) {
 
         Consulta.create({
 
             
-            consultas:consultas,
+            dtconsulta:dtconsulta,
+           
           
-           
-           
-        }).then(() => {
-            res.redirect("/pacientes/listar");
+         }).then(() => {
+            res.redirect("/consultas/listar");
         })
 
     } else {
-        res.redirect("/pacientes/save");
+        res.redirect("/consultas/save");
     }
 });
 
