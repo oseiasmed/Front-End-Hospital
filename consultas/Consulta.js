@@ -1,19 +1,15 @@
 const Sequelize = require("sequelize");
 const connection = require("../database/database");
+const Paciente= require("../pacientes/Paciente");
 
-const Consulta = connection.define('status_pacientes', {
+const Consulta = connection.define('consultas', {
 
-    descricao: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-
-    id_hospital: {
+    idhospital: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
 
-    id_paciente: {
+    idpaciente: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
@@ -28,5 +24,8 @@ const Consulta = connection.define('status_pacientes', {
         allowNull: false
     }
 });
+
+Paciente.hasMany(Consulta); 
+Consulta.belongsTo(Paciente); 
 
 module.exports = Consulta;

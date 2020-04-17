@@ -10,41 +10,25 @@
             <tr>
                 <th>ID:</th>
                 <th>Nome:</th>
-                <th>CPF:</th>
-                <th>Endereço:</th>
-                <th>Número:</th>
-                <th>Complemento:</th>
-                <th>Bairro:</th>
-                 <th>Cidade:</th>
-                 <th>UF:</th>
-                 <th>Ações</th>
+                <th>Hospital</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Ações</th>
                  
             </tr>
         </thead>
         <tbody>
-            <% pacientes.forEach(paciente => { %>
+            <% consuttas.forEach(consulta => { %>
                 <tr>
                 
-                    <th><%= paciente.id %></th>
-                    <th><%= paciente.nome %></th>
-                    <th><%= paciente.cpf %></th>
-                    <th><%= paciente.endereco %></th>
-                    <th><%= paciente.numero %></th>
-                    <th><%= paciente.complemento %></th>
-                    <th><%= paciente.bairro %></th>
-                    <th><%= paciente.cidade %></th>
-                    <th><%= paciente.uf %></th>
-                    <th>
-                    <a href="/pacientes/editar/<%= paciente.id %>" class="btn btn-warning">Editar</a>
-                        
-                        <form method="POST" action="/pacientes/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
-                            <input type="hidden" name="id" value="<%= paciente.id %>">
-                            <button class="btn btn-danger">Deletar</button>
-                        </form>
+                    <th><%= consulta.id %></th>
+                    <th><%= consulta.pacientes.nome %></th>
+                    <th><%= consulta.hospitais %></th>
+                    <th><%= consulta.dtconsulta %></th>
+                    <th><%= consulta.status %></th>
                     
-                    </th>
-                    </tr>
-            <% }) %>
+                    <th>
+                
         </tbody>
         </table>
     </div>

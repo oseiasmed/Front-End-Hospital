@@ -1,11 +1,11 @@
 <%- include('../partials/header.ejs') %> <%-
 include('../partials/navbar.ejs') %>
 
-<div class="container">
-	<hr>
+<div class="container mt-5">
+     <form action="/consultas/save" method="post">
 	<div class="card">
 		<div class="card-header">
-			<h2 class="text-center">Agendar consulta</h2>
+			<h2 class="text-center">Registro de Consulta</h2>
 		</div>
 		<div class="card-body">
 			<form action="/pacientes/save" method="post">
@@ -19,7 +19,7 @@ include('../partials/navbar.ejs') %>
 						</select>
 					</div>
 					<div class="col">
-						<!--<input type="number" class="form-control" name="cpf" placeholder="CPF">-->
+						
 						<label>Hospital:</label> <select name="hospitais"
 							class="form-control"> <% hospitais.forEach((hospital) =>
 							{ %>
@@ -28,8 +28,20 @@ include('../partials/navbar.ejs') %>
 						</select><br>
 					</div>
 				</div>
-				<label>Data da consulta:</label> <input class="form-control"
-					type="date" name="dtnascimento" placeholder="Data de nascomento"><br>
+				<div class="row">
+					<div class="col">
+						<label>Data da consulta:</label> <input class="form-control"
+							type="date" name="dtconsulta" placeholder="Data da consulta">
+					</div>
+					<div class="col">
+						
+						<label>Status do paciente:</label> <select name="status"
+							class="form-control"> <% status.forEach((status) => { %>
+							<option value="<%= status.id %>"><%= status.descricao %></option>
+							<% }) %>
+						</select><br>
+					</div>
+				</div>
 				<button class="btn btn-success btn-block">Agendar</button>
 			</form>
 		</div>

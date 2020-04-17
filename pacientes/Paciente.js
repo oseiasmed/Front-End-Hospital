@@ -47,6 +47,4 @@ const Paciente = connection.define('pacientes', {
     },
 })
 
-
-
 module.exports = Paciente;
