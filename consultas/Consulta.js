@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const connection = require("../database/database");
 const Paciente= require("../pacientes/Paciente");
 
+
 const Consulta = connection.define('consultas', {
 
     idhospital: {
@@ -19,7 +20,7 @@ const Consulta = connection.define('consultas', {
         allowNull: false
     },
 
-    dt_consulta: {
+    dtconsulta: {
         type: Sequelize.DATE,
         allowNull: false
     }

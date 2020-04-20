@@ -11,18 +11,17 @@ include('../partials/navbar.ejs') %>
 			
 				<div class="row">
 					<div class="col">
-						<label>Nome do paciente:</label> <select name="pacientes"
-							class="form-control"> <% pacientes.forEach((paciente) =>
-							{ %>
-							<option value="<%= paciente.id %>"><%= paciente.nome %></option>
-							<% }) %>
+						<label>Nome do paciente:</label> 
+						<select name="pacientes" class="form-control"> 
+						<% pacientes.forEach((paciente) => { %>
+						<option value="<%= paciente.id %>"><%= paciente.nome %></option>
+						<% }) %>
 						</select>
 					</div>
 					<div class="col">
 						
-						<label>Hospital:</label> <select name="hospitais"
-							class="form-control"> <% hospitais.forEach((hospital) =>
-							{ %>
+						<label>Hospital:</label> 
+						<select name="hospitais" class="form-control"> <% hospitais.forEach((hospital) => { %>
 							<option value="<%= hospital.id %>"><%= hospital.nome %></option>
 							<% }) %>
 						</select><br>
@@ -30,19 +29,19 @@ include('../partials/navbar.ejs') %>
 				</div>
 				<div class="row">
 					<div class="col">
-						<label>Data da consulta:</label> <input class="form-control"
-							type="date" name="dtconsulta" placeholder="Data da consulta">
-					</div>
-					<div class="col">
-						
-						<label>Status do paciente:</label> <select name="status"
-							class="form-control"> <% status.forEach((status) => { %>
+					<label>Data da consulta:</label> 
+					  <input class="form-control"  type="date" name="dtconsulta"  placeholder="Data da consulta">
+					   </div>
+					    <div class="col">
+						    <label>Status do paciente:</label> 
+							<select name="status" class="form-control"> 
+							<% status.forEach((status) => { %>
 							<option value="<%= status.id %>"><%= status.descricao %></option>
 							<% }) %>
 						</select><br>
 					</div>
 				</div>
-				<button class="btn btn-success btn-block">Agendar</button>
+				<button class="btn btn-success btn-block">Registrar</button>
 			</form>
 		</div>
 	</div>

@@ -1,17 +1,3 @@
-ed
-/
-Hospital-NodeJS
-1
-00
- Code Issues 0 Pull requests 0 Actions Projects 0 Wiki Security Insights Settings
-Hospital-NodeJS/consultas/consultasController.js /
-@oseiasmed oseiasmed Refatorando o código do projeto Node Hospital
-b4a9535 5 hours ago
-78 lines (44 sloc)  1.42 KB
-  
-Code navigation is available!
-Navigate your code with ease. Click on function and method calls to jump to their definitions or references in the same repository. Learn more
-
 const express = require("express");
 const router = express.Router();
 const Hospital = require("../hospitais/Hospital");
@@ -19,7 +5,7 @@ const Consulta = require("./Consulta");
 const Paciente = require("../pacientes/Paciente");
 const Status = require("../status/Status");
 
-// Listar consultas
+// Cadastrar consultas listadas
 
 router.get("/consultas/listar", (req, res) => {
 
@@ -44,8 +30,6 @@ router.get("/consultas/cadastrar", (req, res) => {
     Paciente.findAll().then(p => {
 
         pacientes = p;
-
-
     })
 
     Status.findAll().then(st => {
@@ -57,11 +41,33 @@ router.get("/consultas/cadastrar", (req, res) => {
     })
 })
 
+// ==========================  Salvar / Cadastrar consultas ======================= // 
 
-router.get("/pacientes/cadastrar", (req, res) => {
+router.post("/consultas/save", (req, res) => {
 
-    res.render("pacientes/new")
+    var hospitais = req.body.hospitais;
+    var pacientes = req.body.pacientes;
+    var dtconsulta = req.body.dtconsulta;
 
-})
+    var consultas = req.body.consultas;
+
+    if (hospitais != undefined) {
+
+        Consulta.create({
+
+            idhospital: hospitais,
+            idpaciente: pacientes,
+            idstatus_paciente: pacientes,
+            dtconsulta:dtconsulta
+
+        }).then(() => {
+
+            res.redirect("/consultas/listar");
+        })
+
+    } else {
+        res.redirect("/");
+    }
+});
 
 module.exports = router;
