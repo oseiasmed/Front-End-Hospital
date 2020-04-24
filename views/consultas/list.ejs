@@ -8,51 +8,29 @@
     <table class="table table-striped ">
         <thead>
             <tr>
-                <th>ID:</th>
-                <th>Nome:</th>
-                 <th>CEP:</th>
-                <th>CNPJ:</th>
-                <th>Endereço:</th>
-                <th>Número:</th>
-                <th>Complemento:</th>
-                <th>Bairro:</th>
-                 <th>Cidade:</th>
-                 <th>UF:</th>
-                 <th>Ações</th>
-                 
+                <th>Data</th>
+           
             </tr>
         </thead>
         <tbody>
             <% hospitais.forEach(hospital => { %>
+
                 <tr>
-                
-                    <th><%= hospital.id %></th>
-                    <th><%= hospital.nome %></th>
-                    <th><%= hospital.cep %></th>
-                    <th><%= hospital.cnpj %></th>
-                    <th><%= hospital.endereco %></th>
-                    <th><%= hospital.numero %></th>
-                    <th><%= hospital.complemento %></th>
-                    <th><%= hospital.bairro %></th>
-                    <th><%= hospital.cidade %></th>
-                    <th><%= hospital.uf %></th>
-                    <th>
-         
-                        <a href="/hospitais/editar/<%= hospital.id %>" class="btn btn-warning">Editar</a>
-                        
-                        <form method="POST" action="/hospitais/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
-                            <input type="hidden" name="id" value="<%= hospital.id %>">
-                            <button class="btn btn-danger">Deletar</button>
-                        </form>
-                    
-                    </th>
-                    </tr>
+                   <th><%= hospital.id %></th>
+                   <th>
+                   <a href="/hospitais/editar/<%= hospital.id %>" class="btn btn-warning">Editar</a>
+                   <form method="POST" action="/hospitais/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                    <input type="hidden" name="id" value="<%= hospital.id %>">
+                    <button class="btn btn-danger">Deletar</button>
+                    </form>
+                </th>
+                </tr>
+
             <% }) %>
         </tbody>
         </table>
     </div>
-
-<script>
+ <script>
     function confirmarDelecao(event, form){
         event.preventDefault();
         var decision = confirm("Você quer deletar esta categoria?");

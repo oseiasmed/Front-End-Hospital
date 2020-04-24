@@ -5,17 +5,17 @@ const Paciente= require("../pacientes/Paciente");
 
 const Consulta = connection.define('consultas', {
 
-    idhospital: {
+    hospitalId: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
 
-    idpaciente: {
+    pacienteId: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
 
-    idstatus_paciente: {
+    statusId: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
@@ -28,5 +28,7 @@ const Consulta = connection.define('consultas', {
 
 Paciente.hasMany(Consulta); 
 Consulta.belongsTo(Paciente); 
+
+//Consulta.sync({force:true});
 
 module.exports = Consulta;

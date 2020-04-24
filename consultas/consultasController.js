@@ -48,21 +48,19 @@ router.post("/consultas/save", (req, res) => {
     var hospitais = req.body.hospitais;
     var pacientes = req.body.pacientes;
     var dtconsulta = req.body.dtconsulta;
-
-    var consultas = req.body.consultas;
-
+    
     if (hospitais != undefined) {
 
         Consulta.create({
 
-            idhospital: hospitais,
-            idpaciente: pacientes,
-            idstatus_paciente: pacientes,
+            hospitalId: hospitais,
+            pacienteId: pacientes,
+            statusId: pacientes,
             dtconsulta:dtconsulta
 
         }).then(() => {
 
-            res.redirect("/consultas/listar");
+            res.redirect("/");
         })
 
     } else {
