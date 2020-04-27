@@ -90,24 +90,19 @@ router.post("/consultas/delete", (req, res) => {
     }
 });
 
-
 //Editar Consultas
 
-// ============= Editar Pacientes =============== //
-
 router.get("/consultas/editar/:id", (req, res) => {
-    var id = req.params.id;
-    var hospitais = req.body.hospitais;
-    var pacientes = req.body.pacientes;
-    var dtconsulta = req.body.dtconsulta;
 
+    var id = req.params.id;
+   
     if (isNaN(id)) {
         res.redirect("/consultas/listar");
     }
-
+    
     Consulta.findByPk(id).then(consultas => {
 
-        if (pacientes != undefined) {
+        if (consultas != undefined) {
 
             res.render("consultas/edit", { consultas: consultas });
 
@@ -120,30 +115,5 @@ router.get("/consultas/editar/:id", (req, res) => {
         res.redirect("/consultas/listar");
     })
 })
-
-// ======= Persistir edição de Consultas ========= //
-
-router.post("/consultas/atualizar", (req, res) => {
-    id = req.body.id;
-    var hospitais = req.body.hospitais;
-    var pacientes = req.body.pacientes;
-    var dtconsulta = req.body.dtconsulta;
-
-
-    Consulta.update({
-
-        hospitalId: hospitais,
-        pacienteId: pacientes,
-        statusId: pacientes,
-        dtconsulta: dtconsulta
-
-    }, {
-        where: {
-            id: id
-        }
-    }).then(() => {
-        res.redirect("/consultas/listar/");
-    })
-});
 
 module.exports = router;
