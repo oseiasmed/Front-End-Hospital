@@ -63,9 +63,6 @@ router.post("/pacientes/save", (req, res) => {
     }
 });
 
-
-
-
 router.post("/pacientes/delete", (req, res) => {
     var id = req.body.id;
     if (id != undefined) {

@@ -1,7 +1,8 @@
 const Sequelize = require("sequelize");
 const connection = require("../database/database");
 
-const Status = connection.define('status_pacientes', {
+
+const Status = connection.define('status', {
 
     descricao: {
         type: Sequelize.STRING,

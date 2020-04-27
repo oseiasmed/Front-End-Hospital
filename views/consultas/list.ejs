@@ -8,26 +8,31 @@
     <table class="table table-striped ">
         <thead>
             <tr>
-                <th>Data</th>
-           
+                <th>Id:</th>
+                <th>Data:</th>
+                <th>Paciente:</th>
+                <th>Hospital:</th>
+                 <th>Status:</th>
             </tr>
         </thead>
         <tbody>
-            <% hospitais.forEach(hospital => { %>
-
-                <tr>
-                   <th><%= hospital.id %></th>
-                   <th>
-                   <a href="/hospitais/editar/<%= hospital.id %>" class="btn btn-warning">Editar</a>
-                   <form method="POST" action="/hospitais/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
-                    <input type="hidden" name="id" value="<%= hospital.id %>">
-                    <button class="btn btn-danger">Deletar</button>
-                    </form>
-                </th>
-                </tr>
-
+            <% consultas.forEach(consulta => { %>
+                   <tr>
+                   <td><%= consulta.id %></td>
+                   <td><%= consulta.dtconsulta %></td>
+                   <td><%= consulta.paciente.nome %></td>
+                   <td><%= consulta.hospital.nome %></td>
+                    <td><%= consulta.status.descricao %></td>
+                   <td>
+                        <a href="/consultas/editar/<%= consulta.id %>" class="btn btn-warning">Editar</a>
+                        <form method="POST" action="/consultas/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                            <input type="hidden" name="id" value="<%= consulta.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                    </td>
+                   </tr>
             <% }) %>
-        </tbody>
+         </tbody>
         </table>
     </div>
  <script>

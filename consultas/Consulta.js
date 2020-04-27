@@ -1,6 +1,10 @@
 const Sequelize = require("sequelize");
 const connection = require("../database/database");
-const Paciente= require("../pacientes/Paciente");
+const Paciente = require("../pacientes/Paciente");
+const Hospital = require("../hospitais/Hospital");
+const Status = require("../status/Status");
+
+
 
 
 const Consulta = connection.define('consultas', {
@@ -27,8 +31,10 @@ const Consulta = connection.define('consultas', {
 });
 
 Paciente.hasMany(Consulta); 
+Hospital.hasMany(Consulta);
+Status.hasMany(Consulta);
 Consulta.belongsTo(Paciente); 
-
-//Consulta.sync({force:true});
+Consulta.belongsTo(Hospital);
+Consulta.belongsTo(Status);
 
 module.exports = Consulta;
