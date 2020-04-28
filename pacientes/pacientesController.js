@@ -66,6 +66,7 @@ router.post("/pacientes/save", adminAuth ,(req, res) => {
 
 router.post("/pacientes/delete",adminAuth , (req, res) => {
     var id = req.body.id;
+
     if (id != undefined) {
         if (!isNaN(id)) {
             Paciente.destroy({
@@ -87,6 +88,7 @@ router.post("/pacientes/delete",adminAuth , (req, res) => {
 // ============= Editar Pacientes =============== //
 
 router.get("/pacientes/editar/:id",adminAuth , (req, res) => {
+    
     var id = req.params.id;
 
     if (isNaN(id)) {

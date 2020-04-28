@@ -41,7 +41,17 @@ router.post("/users/create",adminAuth , (req, res) => {
 });
 
 router.get("/login", (req, res) => {
+
     res.render("admin/users/login");
+    
+    
+});
+
+router.get("/login/:path/:path2", (req, res) => {
+
+     req.session.path = req.params.path + "/" + req.params.path2;
+     res.render("admin/users/login");
+ 
 });
 
 router.post("/authenticate", (req, res) => {
@@ -56,10 +66,11 @@ router.post("/authenticate", (req, res) => {
 
             if (correct) {
                 req.session.user = {
+                    
                     id: user.id,
                     email: user.email
                 }
-                res.redirect("/");
+                res.redirect(req.session.path);
             } else {
                 res.redirect("/login");
             }
