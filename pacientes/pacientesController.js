@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Paciente = require("./Paciente");
+const adminAuth = require("../middlewares/adminAuth");
 
 
 //const adminAuth = require("../middlewares/adminAuth");
@@ -13,7 +14,7 @@ router.get("/pacientes/cadastar", (req, res) => {
 
 // ======================== Listar Pacientes =========================== //
 
-router.get("/pacientes/listar", (req, res) => {
+router.get("/pacientes/listar", adminAuth ,(req, res) => {
 
     Paciente.findAll().then(pacientes => {
 
@@ -30,7 +31,7 @@ router.get("/pacientes/cadastrar", (req, res) => {
 
 // ==========================  Salvar / Cadastrar Pacientes ======================= // 
 
-router.post("/pacientes/save", (req, res) => {
+router.post("/pacientes/save", adminAuth ,(req, res) => {
     var nome = req.body.nome;
     var cpf = req.body.cpf;
     var endereco = req.body.endereco;
@@ -63,7 +64,7 @@ router.post("/pacientes/save", (req, res) => {
     }
 });
 
-router.post("/pacientes/delete", (req, res) => {
+router.post("/pacientes/delete",adminAuth , (req, res) => {
     var id = req.body.id;
     if (id != undefined) {
         if (!isNaN(id)) {
@@ -85,7 +86,7 @@ router.post("/pacientes/delete", (req, res) => {
 
 // ============= Editar Pacientes =============== //
 
-router.get("/pacientes/editar/:id", (req, res) => {
+router.get("/pacientes/editar/:id",adminAuth , (req, res) => {
     var id = req.params.id;
 
     if (isNaN(id)) {
@@ -110,7 +111,7 @@ router.get("/pacientes/editar/:id", (req, res) => {
 
 // ======= Persistir edição de Pacientes ========= //
 
-router.post("/pacientes/atualizar", (req, res) => {
+router.post("/pacientes/atualizar",adminAuth , (req, res) => {
     id = req.body.id;
     var nome = req.body.nome;
     var cpf = req.body.cpf;

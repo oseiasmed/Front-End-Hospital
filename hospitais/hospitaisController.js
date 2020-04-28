@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-//const Category = require("./Category");
 const Hospital = require("./Hospital");
-//const adminAuth = require("../middlewares/adminAuth");
+const adminAuth = require("../middlewares/adminAuth");
 
 router.get("/", (req, res) => {
 
@@ -12,7 +11,7 @@ router.get("/", (req, res) => {
 
 // Listar Hospitais
 
-router.get("/hospitais/listar", (req, res) => {
+router.get("/hospitais/listar", adminAuth,(req, res) => {
 
     Hospital.findAll().then(hospitais => {
 
@@ -29,7 +28,7 @@ router.get("/hospitais/cadastrar", (req, res) => {
 
 // Salvar / Cadastrar Hospitais
 
-router.post("/hospitais/save", (req, res) => {
+router.post("/hospitais/save",adminAuth, (req, res) => {
     var nome = req.body.nome;
     var cnpj = req.body.cnpj;
     var endereco = req.body.endereco;
@@ -64,7 +63,7 @@ router.post("/hospitais/save", (req, res) => {
 
 // Deletar hospitais
 
-router.post("/hospitais/delete", (req, res) => {
+router.post("/hospitais/delete", adminAuth,(req, res) => {
     var id = req.body.id;
     if (id != undefined) {
         if (!isNaN(id)) {
@@ -85,7 +84,7 @@ router.post("/hospitais/delete", (req, res) => {
 
 //Editar Hospital
 
-router.get("/hospitais/editar/:id", (req, res) => {
+router.get("/hospitais/editar/:id",adminAuth, (req, res) => {
     var id = req.params.id;
 
     if (isNaN(id)) {
@@ -110,7 +109,7 @@ router.get("/hospitais/editar/:id", (req, res) => {
 
 
 
-router.post("/hospitais/atualizar", (req, res) => {
+router.post("/hospitais/atualizar", adminAuth,(req, res) => {
     id = req.body.id;
     var nome = req.body.nome;
     var cnpj = req.body.cnpj;

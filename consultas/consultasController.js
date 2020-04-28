@@ -4,9 +4,11 @@ const Hospital = require("../hospitais/Hospital");
 const Consulta = require("./Consulta");
 const Paciente = require("../pacientes/Paciente");
 const Status = require("../status/Status");
+const adminAuth = require("../middlewares/adminAuth");
 
-// Cadastrar consultas listadas
-router.get("/consultas/listar", (req, res) => {
+// Listar consultas 
+
+router.get("/consultas/listar", adminAuth, (req, res) => {
 
     Consulta.findAll({ include: [{ model: Hospital }, { model: Paciente }, { model: Status }] }).then(consultas => {
 
@@ -14,7 +16,9 @@ router.get("/consultas/listar", (req, res) => {
     })
 });
 
-router.get("/consultas/cadastrar", (req, res) => {
+//Listar campos dentro do formulário para salvar consultas
+
+router.get("/consultas/cadastrar",adminAuth , (req, res) => {
 
     var hospitais;
     var pacientes;
@@ -42,7 +46,7 @@ router.get("/consultas/cadastrar", (req, res) => {
 
 // ==========================  Salvar / Cadastrar consultas ======================= // 
 
-router.post("/consultas/save", (req, res) => {
+router.post("/consultas/save",adminAuth ,(req, res) => {
 
     var hospitais = req.body.hospitais;
     var pacienteId = req.body.pacientes;
@@ -68,10 +72,9 @@ router.post("/consultas/save", (req, res) => {
     }
 });
 
-
 // Excuir Consultas
 
-router.post("/consultas/delete", (req, res) => {
+router.post("/consultas/delete",adminAuth ,(req, res) => {
     var id = req.body.id;
     if (id != undefined) {
         if (!isNaN(id)) {
@@ -89,31 +92,5 @@ router.post("/consultas/delete", (req, res) => {
         res.redirect("/consultas/index");
     }
 });
-
-//Editar Consultas
-
-router.get("/consultas/editar/:id", (req, res) => {
-
-    var id = req.params.id;
-   
-    if (isNaN(id)) {
-        res.redirect("/consultas/listar");
-    }
-    
-    Consulta.findByPk(id).then(consultas => {
-
-        if (consultas != undefined) {
-
-            res.render("consultas/edit", { consultas: consultas });
-
-        } else {
-            res.redirect("/consultas/listar");
-        }
-
-    }).catch(erro => {
-
-        res.redirect("/consultas/listar");
-    })
-})
 
 module.exports = router;
