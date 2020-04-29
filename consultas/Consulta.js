@@ -27,6 +27,7 @@ const Consulta = connection.define('consultas', {
     dtconsulta: {
         type: Sequelize.DATE,
         allowNull: false
+
     }
 });
 

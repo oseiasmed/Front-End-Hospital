@@ -1,0 +1,38 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+<div class="container-lg">
+    <hr>
+    <h2 class="text-center">Histórico de consultas</h2>
+    <!--<a class="btn btn-success ml-3" href="/hospitais/cadastrar">Cadastrar um novo hospital</a>-->
+    <hr>
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+               
+                <th>Data:</th>
+                <th>Paciente:</th>
+                <th>Hospital:</th>
+                <th>Status:</th>
+           </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>29/04/2020</td>
+                <td>Maria do Rosário</td>
+                <td>Conceição</td>
+                <td>Contaminado</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+ <script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar esta categoria?");
+        if(decision){
+            form.submit();
+        }
+    }
+</script>
+<%- include('../partials/footer.ejs') %>
+

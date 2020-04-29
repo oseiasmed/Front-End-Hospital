@@ -6,13 +6,21 @@ const Paciente = require("../pacientes/Paciente");
 const Status = require("../status/Status");
 const adminAuth = require("../middlewares/adminAuth");
 
+// Dashboard
+
+router.get("/consultas/dashboard",(req,res)=>{
+
+    res.render("dashboard/dashboard")
+})
+
 // Listar consultas 
 
 router.get("/consultas/listar", adminAuth, (req, res) => {
 
-    Consulta.findAll({ include: [{ model: Hospital }, { model: Paciente }, { model: Status }] }).then(consultas => {
+    Consulta.findAll({ 
+        include: [{ model: Hospital }, { model: Paciente }, { model: Status }] }).then(consultas => {
 
-        res.render("consultas/list", { consultas: consultas });
+            res.render("consultas/list", { consultas: consultas });
     })
 });
 
