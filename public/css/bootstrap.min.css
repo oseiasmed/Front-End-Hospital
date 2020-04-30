@@ -1478,10 +1478,12 @@ pre code {
   padding: 0.75rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6;
+  font-weight:normal;
 }
 .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #dee2e6;
+  font-weight: bold;
 }
 .table tbody + tbody {
   border-top: 2px solid #dee2e6;

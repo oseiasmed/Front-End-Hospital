@@ -1,11 +1,11 @@
 <%- include('../partials/header.ejs') %>
 <%- include('../partials/navbar.ejs') %>
-<div class="container-lg">
-    <hr>
-    <h2 class="text-center"> Hospitais cadastrados</h2>
-    <a class="btn btn-success ml-3" href="/hospitais/cadastrar">Cadastrar um novo hospital</a>
-    <hr>
-    <table class="table table-striped ">
+<div class="container">
+    
+    <h2 class="text-center mt-4"> Hospitais cadastrados</h2>
+    <a class="btn btn-success" href="/hospitais/cadastrar">Cadastrar um novo hospital</a>
+    
+    <table class="table table-responsive{-sm|-md|-lg|-xl} mt-5">
         <thead>
             <tr>
                 <th>Id:</th>
@@ -13,13 +13,14 @@
                 <th>Paciente:</th>
                 <th>Hospital:</th>
                  <th>Status:</th>
+                 <th>Ações:</th>
             </tr>
         </thead>
         <tbody>
             <% consultas.forEach(consulta => { %>
                    <tr>
                    <td><%= consulta.id %></td>
-                   <td><%= consulta.dtconsulta %></td>
+                   <td><%= moment(consulta.dtconsulta).format(`DD/MM/YYYY`)%></td>
                    <td><%= consulta.paciente.nome %></td>
                    <td><%= consulta.hospital.nome %></td>
                     <td><%= consulta.status.descricao %></td>

@@ -1,31 +1,37 @@
 <%- include('../partials/header.ejs') %>
 <%- include('../partials/navbar.ejs') %>
-<div class="container-lg">
-    <hr>
-    <h2 class="text-center">Histórico de consultas</h2>
+<div class="container">
+<h2 class="text-center mt-5">Histórico de consultas</h2>
+
     <!--<a class="btn btn-success ml-3" href="/hospitais/cadastrar">Cadastrar um novo hospital</a>-->
-    <hr>
-    <table class="table table-striped mt-5">
+    <table class="table mt-5">
         <thead>
             <tr>
-               
+             <td>
+                   <label>Buscar consulta por data:</label> 
+				   <select name="dtconsulta" class="form-control"> 
+                   <% consultas.forEach(consulta => { %>
+                   <option value="<%= consulta.id %>"><%= moment(consulta.dtconsulta).format(`DD/MM/YYYY`) %></option>
+                <% }) %>
+                   </td>
+                   </tr>
+                <!--<tr>
                 <th>Data:</th>
                 <th>Paciente:</th>
                 <th>Hospital:</th>
                 <th>Status:</th>
-           </tr>
+                </tr>-->
         </thead>
         <tbody>
-            <tr>
-                <td>29/04/2020</td>
-                <td>Maria do Rosário</td>
-                <td>Conceição</td>
-                <td>Contaminado</td>
-            </tr>
-            </tbody>
+        <tr>
+              <td>
+              </td>    
+              </tr>
+              </tbody>
         </table>
     </div>
- <script>
+ <!--<script>
+
     function confirmarDelecao(event, form){
         event.preventDefault();
         var decision = confirm("Você quer deletar esta categoria?");
@@ -33,6 +39,7 @@
             form.submit();
         }
     }
-</script>
+</script>-->
+
 <%- include('../partials/footer.ejs') %>
 

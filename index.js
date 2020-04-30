@@ -10,12 +10,13 @@ const Hospital = require("./hospitais/Hospital");
 const Paciente = require("./pacientes/Paciente");
 const Consulta = require("./consultas/Consulta");
 const User = require("./users/User");
-const session = require("express-session")
+const session = require("express-session");
+const moment = require("moment");
 
 // View engine
 
 app.set('view engine', 'ejs');
-
+app.locals.moment = require('moment');
 
 // Using Sessions
 

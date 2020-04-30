@@ -8,25 +8,29 @@ const adminAuth = require("../middlewares/adminAuth");
 
 // Dashboard
 
-router.get("/consultas/dashboard",(req,res)=>{
+router.get("/consultas/dashboard", adminAuth, (req, res) => {
 
-    res.render("dashboard/dashboard")
-})
+    Consulta.findAll().then(consultas => {
+
+        res.render("dashboard/dashboard", { consultas: consultas });
+    })
+});
 
 // Listar consultas 
 
 router.get("/consultas/listar", adminAuth, (req, res) => {
 
-    Consulta.findAll({ 
-        include: [{ model: Hospital }, { model: Paciente }, { model: Status }] }).then(consultas => {
+    Consulta.findAll({
+        include: [{ model: Hospital }, { model: Paciente }, { model: Status }]
+    }).then(consultas => {
 
-            res.render("consultas/list", { consultas: consultas });
+        res.render("consultas/list", { consultas: consultas });
     })
 });
 
 //Listar campos dentro do formulário para salvar consultas
 
-router.get("/consultas/cadastrar",adminAuth , (req, res) => {
+router.get("/consultas/cadastrar", adminAuth, (req, res) => {
 
     var hospitais;
     var pacientes;
@@ -54,7 +58,7 @@ router.get("/consultas/cadastrar",adminAuth , (req, res) => {
 
 // ==========================  Salvar / Cadastrar consultas ======================= // 
 
-router.post("/consultas/save",adminAuth ,(req, res) => {
+router.post("/consultas/save", adminAuth, (req, res) => {
 
     var hospitais = req.body.hospitais;
     var pacienteId = req.body.pacientes;
@@ -82,7 +86,7 @@ router.post("/consultas/save",adminAuth ,(req, res) => {
 
 // Excuir Consultas
 
-router.post("/consultas/delete",adminAuth ,(req, res) => {
+router.post("/consultas/delete", adminAuth, (req, res) => {
     var id = req.body.id;
     if (id != undefined) {
         if (!isNaN(id)) {
