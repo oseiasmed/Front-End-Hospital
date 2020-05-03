@@ -7,7 +7,7 @@
             <h2>Criação de usuário</h2>
         </div>
         <div class="card-body">
-            <form action="/users/create" method="post">
+            <form action="/admin/users/" method="post">
                 <input class="form-control" name="email" type="email" placeholder="email@exemplo.com"><br>
                 <input class="form-control" name="password" type="password" placeholder="******"><br>
                 <button type="submit" class="btn btn-success btn-block">Criar</button>
@@ -15,6 +15,5 @@
         </div>
     </div>
 </div>
-
 
 <%- include ../../partials/footer.ejs %>
