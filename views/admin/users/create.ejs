@@ -1,5 +1,7 @@
 <%- include ../../partials/header.ejs %>
 <%- include ../../partials/navbar.ejs %>
+
+
 <div class="container">
     <hr> 
     <div class="card mt-5">
@@ -7,7 +9,7 @@
             <h2>Criação de usuário</h2>
         </div>
         <div class="card-body">
-            <form action="/admin/users/" method="post">
+            <form action="/users/create" method="POST">
                 <input class="form-control" name="email" type="email" placeholder="email@exemplo.com"><br>
                 <input class="form-control" name="password" type="password" placeholder="******"><br>
                 <button type="submit" class="btn btn-success btn-block">Criar</button>
@@ -15,5 +17,6 @@
         </div>
     </div>
 </div>
+
 
 <%- include ../../partials/footer.ejs %>
