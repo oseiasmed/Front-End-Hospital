@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require("./User");
 const bcrypt = require('bcryptjs');
 
-
 router.get("/admin/users", (req, res) => {
     User.findAll().then(users => {
         res.render("admin/users/index", { users: users });
@@ -32,8 +31,6 @@ router.post("/users/create", (req, res) => {
             }).catch((err) => {
                 res.redirect("/admin/users");
             });
-
-
         }else{
             res.redirect("/admin/users/create");
         }
@@ -43,7 +40,6 @@ router.post("/users/create", (req, res) => {
 router.get("/login", (req, res) => {
 
     res.render("admin/users/login");
-
 
 });
 
@@ -91,19 +87,27 @@ router.get("/logout", (req, res) => {
 
 router.post("/users/delete",(req, res) => {
     var id = req.body.id;
+
     if (id != undefined) {
+
         if (!isNaN(id)) {
+
             User.destroy({
+
                 where: {
                     id: id
                 }
+
             }).then(() => {
                 res.redirect("/admin/users");
             });
-        } else {// NÃO FOR UM NÚMERO
+
+        } else { 
+
             res.redirect("/admin/users");
         }
-    } else { // NULL
+
+    } else { 
         res.redirect("/");
     }
 });
@@ -134,5 +138,28 @@ router.get("/users/editar/:id", (req, res) => {
         res.redirect("/admin/users");
     })
 })
+
+router.post("/users/update",(req, res) => {
+
+    var id = req.body.id;
+    var email = req.body.email;
+    var password = req.body.password;
+
+    User.update({email:email,password:password},{
+
+        where: {
+
+            id: id
+        }
+
+    }).then(() => {
+
+        res.redirect("/admin/users");
+
+    }).catch(err => {
+
+        res.redirect("/");
+    });
+});
 
 module.exports = router;
