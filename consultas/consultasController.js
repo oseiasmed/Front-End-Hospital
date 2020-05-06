@@ -8,11 +8,16 @@ const adminAuth = require("../middlewares/adminAuth");
 
 // Dashboard
 
-router.get("/consultas/dashboard", adminAuth, (req, res) => {
+router.get("/consultas/dashboard", (req, res) => {
 
-    Consulta.findAll().then(consultas => {
+        Consulta.findAll({
+
+       include: [{ model: Hospital }, { model: Paciente }, { model: Status }],
+
+       }).then(consultas => {
 
         res.render("dashboard/dashboard", { consultas: consultas });
+       
     })
 });
 

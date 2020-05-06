@@ -7,27 +7,29 @@
     <table class="table mt-5">
         <thead>
             <tr>
-             <td>
-                   <label>Buscar consulta por data:</label> 
-				   <select name="dtconsulta" class="form-control"> 
-                   <% consultas.forEach(consulta => { %>
-                   <option value="<%= consulta.id %>"><%= moment(consulta.dtconsulta).format(`DD/MM/YYYY`) %></option>
+             <th>
+                <label>Buscar consulta por data:</label> 
+                <select name="dtconsulta" class="form-control"> 
+                <% consultas.forEach(consulta => { %>
+                <option value="<%= consulta.id %>"><%= moment(consulta.dtconsulta).format(`DD/MM/YYYY`) %></option>
                 <% }) %>
-                   </td>
+                   </th>
+                   </thead>
+                   <tbody>
                    </tr>
-                <!--<tr>
-                <th>Data:</th>
-                <th>Paciente:</th>
-                <th>Hospital:</th>
-                <th>Status:</th>
-                </tr>-->
-        </thead>
-        <tbody>
-        <tr>
-              <td>
-              </td>    
-              </tr>
-              </tbody>
+                    
+                   <% consultas.forEach(consulta => { %>
+                   <tr>
+                   <% if(consulta.dtconsulta) {%>
+                   <td><%= consulta.id %></td>
+                   <td><%= moment(consulta.dtconsulta).format(`DD/MM/YYYY`)%></td>
+                   <td><%= consulta.paciente.nome %></td>
+                   <td><%= consulta.hospital.nome %></td>
+                   <td><%= consulta.status.descricao %></td>
+                   <% } %>
+                   <% }) %>
+                   </tr>
+                   </tbody>
         </table>
     </div>
  <!--<script>
