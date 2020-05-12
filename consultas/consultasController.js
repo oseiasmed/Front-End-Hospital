@@ -6,18 +6,33 @@ const Paciente = require("../pacientes/Paciente");
 const Status = require("../status/Status");
 const adminAuth = require("../middlewares/adminAuth");
 
+
+router.get("/consultas/result", (req, res) => {
+
+    Consulta.findAll({
+
+        include: [{ model: Status },{ model: Hospital }],
+
+    }).then(hospitais =>{
+
+    return res.render("dashboard/result", {hospitais:hospitais});
+     
+      })
+});
+
 // Dashboard
 
 router.get("/consultas/dashboard", (req, res) => {
 
-        Consulta.findAll({
+    Consulta.findAll({
 
-       include: [{ model: Hospital }, { model: Paciente }, { model: Status }],
 
-       }).then(consultas => {
+        include: [{ model: Hospital }, { model: Paciente }, { model: Status }],
+
+    }).then(consultas => {
 
         res.render("dashboard/dashboard", { consultas: consultas });
-       
+
     })
 });
 

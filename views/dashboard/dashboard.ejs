@@ -3,7 +3,7 @@
 <div class="container">
 <h2 class="text-center mt-5">Histórico de consultas</h2>
 
-    <!--<a class="btn btn-success ml-3" href="/hospitais/cadastrar">Cadastrar um novo hospital</a>-->
+<!--<a class="btn btn-success ml-3" href="/hospitais/cadastrar">Cadastrar um novo hospital</a>-->
     <table class="table mt-5">
         <thead>
             <tr>
@@ -11,22 +11,27 @@
                 <label>Buscar consulta por data:</label> 
                 <select name="dtconsulta" class="form-control"> 
                 <% consultas.forEach(consulta => { %>
-                <option value="<%= consulta.id %>"><%= moment(consulta.dtconsulta).format(`DD/MM/YYYY`) %></option>
+                <option value="<%= consulta.dtconsulta%>"><%= moment(consulta.dtconsulta).format(`DD/MM/YYYY`) %></option>
                 <% }) %>
                    </th>
                    </thead>
+                   <td>ID:</td>
+                    <td>Data:</td>
+                    <td>Paciente:</td>
+                    <td>Hospital:</td>
+                    <td>descrição:</td>
                    <tbody>
                    </tr>
                     
                    <% consultas.forEach(consulta => { %>
                    <tr>
-                   <% if(consulta.dtconsulta) {%>
+                  
                    <td><%= consulta.id %></td>
                    <td><%= moment(consulta.dtconsulta).format(`DD/MM/YYYY`)%></td>
                    <td><%= consulta.paciente.nome %></td>
                    <td><%= consulta.hospital.nome %></td>
                    <td><%= consulta.status.descricao %></td>
-                   <% } %>
+             
                    <% }) %>
                    </tr>
                    </tbody>

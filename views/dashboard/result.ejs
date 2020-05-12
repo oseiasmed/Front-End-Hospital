@@ -1,0 +1,33 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+<div class="container">
+<h2 class="text-center mt-5">Relatório de consultas</h2>
+
+<!--<a class="btn btn-success ml-3" href="/hospitais/cadastrar">Cadastrar um novo hospital</a>-->
+    <table class="table mt-5">
+        <thead>
+            <th>
+                Contaminados
+            </th>
+                <th>
+                Curados
+            </th>
+            <th>
+                Óbitos
+            </th>
+            <th>
+                Não Contaminados
+            </th>
+        </thead>
+            <tr>
+            <td><%= hospitais.filter(number=> number.status.id === 1).length %></td>
+            <td><%= hospitais.filter(x => x.status.id === 2).length  %></td>
+            <td><%= hospitais.filter(x => x.status.id === 3).length %></td>
+            <td><%= hospitais.filter(x => x.status.id === 4).length %></td>
+            
+            </tr>
+            </tbody>
+    </table>
+    </div>
+<%- include('../partials/footer.ejs') %>
+

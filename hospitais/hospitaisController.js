@@ -11,6 +11,16 @@ router.get("/", (req, res) => {
 
 // Listar Hospitais
 
+/*router.get("/hospitais/listar", adminAuth,(req, res) => {
+
+    Hospital.findAll().then(hospitais => {
+
+        res.render("hospitais/list", { hospitais: hospitais });
+    })
+});
+*/
+
+
 router.get("/hospitais/listar", adminAuth,(req, res) => {
 
     Hospital.findAll().then(hospitais => {
@@ -18,6 +28,7 @@ router.get("/hospitais/listar", adminAuth,(req, res) => {
         res.render("hospitais/list", { hospitais: hospitais });
     })
 });
+
 
 router.get("/hospitais/cadastrar", (req, res) => {
 
