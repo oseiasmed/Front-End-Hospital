@@ -8,19 +8,6 @@ router.get("/", (req, res) => {
     res.render("hospitais/index")
 })
 
-
-// Listar Hospitais
-
-/*router.get("/hospitais/listar", adminAuth,(req, res) => {
-
-    Hospital.findAll().then(hospitais => {
-
-        res.render("hospitais/list", { hospitais: hospitais });
-    })
-});
-*/
-
-
 router.get("/hospitais/listar", adminAuth,(req, res) => {
 
     Hospital.findAll().then(hospitais => {
@@ -35,7 +22,6 @@ router.get("/hospitais/cadastrar", (req, res) => {
     res.render("hospitais/new")
 
 })
-
 
 // Salvar / Cadastrar Hospitais
 
@@ -118,8 +104,6 @@ router.get("/hospitais/editar/:id",adminAuth, (req, res) => {
     })
 })
 
-
-
 router.post("/hospitais/atualizar", adminAuth,(req, res) => {
     id = req.body.id;
     var nome = req.body.nome;
@@ -154,6 +138,5 @@ router.post("/hospitais/atualizar", adminAuth,(req, res) => {
     })
 
 });
-
 
 module.exports = router;

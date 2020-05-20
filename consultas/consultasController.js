@@ -11,13 +11,35 @@ router.get("/consultas/result", (req, res) => {
 
     Consulta.findAll({
 
-        include: [{ model: Status },{ model: Hospital }],
+        include: [{ model: Hospital }, { model: Paciente }, { model: Status }],
 
-    }).then(hospitais =>{
+    }).then(hospitais => {
 
-    return res.render("dashboard/result", {hospitais:hospitais});
-     
-      })
+        // var contaminado = 0;
+        // var obito = 0;
+        // var curado = 0;
+        // var naoContaminado = 0;
+
+        //     consultas.Foreach(consultas){
+
+        //     if (consulta.status.id == 1) {
+        //         contaminado++;
+        //     }
+
+        //     else if (consulta.status.id == 2) {
+        //         curado++;
+
+        //     } else if (consulta.status.id == 3) {
+        //         obito++;
+
+        //     } else if (consulta.status.id == 4) {
+        //         naoContaminado++;
+        //     }
+        // }
+
+        return res.render("dashboard/result", { hospitais: hospitais,consultas:consultas});
+
+    })
 });
 
 // Dashboard

@@ -19,13 +19,19 @@
                 Não Contaminados
             </th>
         </thead>
+
+         <% consultas.forEach(consulta => { %>
             <tr>
-            <td><%= hospitais.filter(number=> number.status.id === 1).length %></td>
-            <td><%= hospitais.filter(x => x.status.id === 2).length  %></td>
-            <td><%= hospitais.filter(x => x.status.id === 3).length %></td>
-            <td><%= hospitais.filter(x => x.status.id === 4).length %></td>
             
+           
+
+              <td><%= consulta.status.id %></td>
+                
+              
+ 
             </tr>
+
+            <% }) %>
             </tbody>
     </table>
     </div>
